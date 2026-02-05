@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Subs-Pixel con Avatar</title>
+    <style>
+        body {
+            background-color: rgb(16, 75, 8);
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column; /* vertical para apilar título y panel */
+            align-items: center;
+            margin: 0;
+            padding: 50px 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px #00ff00;
+            margin-bottom: 50px; /* separa el título del panel */
+        }
+
+        /* Panel con avatar y contadores */
+        .panel {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Avatar */
+        .avatar img {
+            width: 230px;
+            height: 300px;
+            image-rendering: pixelated; /* efecto pixel art */
+            border: 2px solid #ffcc00;
+            border-radius: 8px;
+        }
+
+        /* Contadores */
+        .contador {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .item img {
+            width: 50px;
+            height: 50px;
+            image-rendering: pixelated;
+        }
+
+        .item span {
+            font-size: 4.5em;
+            font-weight: bold;
+            color: #ffcc00;
+            text-shadow: 1px 1px #00ff00;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Título arriba -->
+<h1>Achicos</h1>
+
+<!-- Panel con avatar a la izquierda y contadores a la derecha -->
+<div class="panel">
+    <div class="avatar">
+        <img src="descarga.png" alt="Mi Avatar">
+    </div>
+
+    <div class="contador">
+        <div class="item">
+            <img src="youtube2.png" alt="YouTube Logo">
+            <span id="youtube-subs">0</span>
+        </div>
+        <div class="item">
+            <img src="insta.png" alt="Instagram Logo">
+            <span id="insta-subs">2515</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_KEY = "AIzaSyDlX1QhXdKuyIASdMKk5VjhOvRUrpT8gKM";
+    const CHANNEL_ID = "UCjCS2bz52v7uJCFkc5bB2MQ";
+
+    async function obtenerSubsYT() {
+        try {
+            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            const subs = data.items[0].statistics.subscriberCount;
+            document.getElementById("youtube-subs").innerText = subs;
+        } catch(e) {
+            console.log("Error obteniendo subs de YouTube:", e);
+            document.getElementById("youtube-subs").innerText = "Error";
+        }
+    }
+
+    obtenerSubsYT();
+    setInterval(obtenerSubsYT, 20000);
+</script>
+
+</body>
+</html>
