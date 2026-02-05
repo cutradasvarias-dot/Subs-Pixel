@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <link rel="manifest" href="manifest.json">
-<link rel="icon" href="descarga.ico">
+    <link rel="icon" href="descarga.ico">
 
     <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <title>Subs-Pixel con Avatar</title>
     <style>
@@ -71,6 +71,18 @@
             color: #ffcc00;
             text-shadow: 1px 1px #00ff00;
         }
+
+        /* Logo Vapeo24 oculto al inicio */
+        #logo-vapeo {
+            display: none;
+            margin-top: 50px;
+        }
+
+        #logo-vapeo img {
+            width: 300px;
+            height: 300px;
+            image-rendering: pixelated;
+        }
     </style>
 </head>
 <body>
@@ -79,7 +91,7 @@
 <h1>Achicos</h1>
 
 <!-- Panel con avatar a la izquierda y contadores a la derecha -->
-<div class="panel">
+<div class="panel" id="panel-contadores">
     <div class="avatar">
         <img src="descarga.png" alt="Mi Avatar">
     </div>
@@ -94,6 +106,11 @@
             <span id="insta-subs">2515</span>
         </div>
     </div>
+</div>
+
+<!-- Logo Vapeo24 -->
+<div id="logo-vapeo">
+    <img src="vapeo24.png" alt="Logo Vapeo24">
 </div>
 
 <script>
@@ -115,10 +132,17 @@
 
     obtenerSubsYT();
     setInterval(obtenerSubsYT, 20000);
+
+    // ====== Cambio al logo de Vapeo24 después de 30 segundos ======
+    setTimeout(() => {
+        document.getElementById("panel-contadores").style.display = "none";
+        document.getElementById("logo-vapeo").style.display = "flex";
+    }, 10000); // 30000 ms = 30 segundos
 </script>
 
 </body>
 </html>
+
 
 
 
