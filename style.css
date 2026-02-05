@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  background: black;
+  color: #00ff66;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  gap: 40px;
+  text-align: center;
+}
+
+.label {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.value {
+  font-size: 32px;
+  margin-top: 10px;
+}
