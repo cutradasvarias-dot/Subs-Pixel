@@ -130,27 +130,38 @@
         }
     }
 
-    // Duración en milisegundos
-    const DURACION_CONTADOR = 10000; // 30 segundos mostrando contador
-    const DURACION_LOGO = 10000;     // 10 segundos mostrando logo Vapeo24
+  <script>
+    const panel = document.getElementById("panel-contadores");
+    const logo = document.getElementById("logo-vapeo");
+
+    // Duraciones en ms
+    const DURACION_CONTADOR = 10000; // 30 segundos
+    const DURACION_LOGO = 10000;     // 10 segundos
+
+    let mostrandoContador = true; // estado inicial
 
     function alternarPantallas() {
-        const panel = document.getElementById("panel-contadores");
-        const logo = document.getElementById("logo-vapeo");
-
-        // Mostrar contador, ocultar logo
-        panel.style.display = "flex";
-        logo.style.display = "none";
-
-        // Después de DURACION_CONTADOR ms, mostrar logo
-        setTimeout(() => {
+        if (mostrandoContador) {
+            // Mostrar logo y ocultar contador
             panel.style.display = "none";
             logo.style.display = "flex";
 
-            // Después de DURACION_LOGO ms, volver a contador
+            mostrandoContador = false;
             setTimeout(alternarPantallas, DURACION_LOGO);
-        }, DURACION_CONTADOR);
+        } else {
+            // Mostrar contador y ocultar logo
+            panel.style.display = "flex";
+            logo.style.display = "none";
+
+            mostrandoContador = true;
+            setTimeout(alternarPantallas, DURACION_CONTADOR);
+        }
     }
+
+    // Inicia el ciclo
+    alternarPantallas();
+</script>
+
 
     // Inicia el bucle
     alternarPantallas();
@@ -158,6 +169,7 @@
 
 </body>
 </html>
+
 
 
 
