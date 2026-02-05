@@ -2,21 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Subs Pixel</title>
-  <style>
-    body {
-      background: black;
-      color: #00ff00;
-      font-family: monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-size: 48px;
-    }
-  </style>
+  <title>Live Subs</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  SUBS: 1234
+  <div class="container">
+    <div class="block">
+      <div class="label">YOUTUBE</div>
+      <div class="value" id="youtube">---</div>
+    </div>
+
+    <div class="block">
+      <div class="label">INSTAGRAM</div>
+      <div class="value" id="instagram">---</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
