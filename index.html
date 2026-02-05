@@ -118,7 +118,7 @@ const CHANNEL_ID = "UCjCS2bz52v7uJCFkc5bB2MQ";
 
 async function obtenerSubsYT() {
     try {
-        const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${UCjCS2bz52v7uJCFkc5bB2MQ}&key=${AIzaSyDlX1QhXdKuyIASdMKk5VjhOvRUrpT8gKM}`;
+        const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`;
         const response = await fetch(url);
         const data = await response.json();
         const subs = data.items[0].statistics.subscriberCount;
