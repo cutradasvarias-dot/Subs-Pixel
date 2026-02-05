@@ -107,6 +107,8 @@ h1 {
         <div class="item">
             <img src="insta.png" alt="Instagram Logo" class="instagram-logo">
             <span id="insta-subs">2516</span>
+            <div>YouTube: <span id="yt">0</span></div>
+<div>Instagram: <span id="ig">0</span></div>
         </div>
     </div>
 </div>
@@ -143,10 +145,23 @@ setInterval(() => {
     index = (index + 1) % imagenes.length;
     logoDinamico.src = imagenes[index];
 }, 10000);
+    <script>
+async function actualizarContadores() {
+  const res = await fetch("contadores.json");
+  const data = await res.json();
+
+  document.getElementById("yt").textContent = data.youtube;
+  document.getElementById("ig").textContent = data.instagram;
+}
+
+setInterval(actualizarContadores, 30000); // cada 30s
+actualizarContadores();
+
 </script>
 
 </body>
 </html>
+
 
 
 
