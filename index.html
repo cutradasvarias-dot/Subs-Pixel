@@ -18,7 +18,7 @@
             color: #00ff00;
             font-family: 'Courier New', monospace;
             display: flex;
-            flex-direction: column; /* vertical para apilar título y panel */
+            flex-direction: column;
             align-items: center;
             margin: 0;
             padding: 50px 0;
@@ -27,26 +27,23 @@
         h1 {
             font-size: 3em;
             text-shadow: 2px 2px #00ff00;
-            margin-bottom: 50px; /* separa el título del panel */
+            margin-bottom: 50px;
         }
 
-        /* Panel con avatar y contadores */
         .panel {
             display: flex;
             align-items: center;
             gap: 30px;
         }
 
-        /* Avatar */
         .avatar img {
             width: 230px;
             height: 300px;
-            image-rendering: pixelated; /* efecto pixel art */
+            image-rendering: pixelated;
             border: 2px solid #ffcc00;
             border-radius: 8px;
         }
 
-        /* Contadores */
         .contador {
             display: flex;
             flex-direction: column;
@@ -72,7 +69,6 @@
             text-shadow: 1px 1px #00ff00;
         }
 
-        /* Logo Vapeo24 oculto al inicio */
         #logo-vapeo {
             display: none;
             margin-top: 50px;
@@ -87,10 +83,8 @@
 </head>
 <body>
 
-<!-- Título arriba -->
 <h1>Achicos</h1>
 
-<!-- Panel con avatar a la izquierda y contadores a la derecha -->
 <div class="panel" id="panel-contadores">
     <div class="avatar">
         <img src="descarga.png" alt="Mi Avatar">
@@ -108,14 +102,14 @@
     </div>
 </div>
 
-<!-- Logo Vapeo24 -->
 <div id="logo-vapeo">
     <img src="vapeo24.png" alt="Logo Vapeo24">
 </div>
 
 <script>
-    const API_KEY = "AIzaSyDlX1QhXdKuyIASdMKk5VjhOvRUrpT8gKM";
-    const CHANNEL_ID = "UCjCS2bz52v7uJCFkc5bB2MQ";
+    // ===== YouTube API =====
+    const API_KEY = "TU_API_KEY_AQUI";
+    const CHANNEL_ID = "TU_CHANNEL_ID_AQUI";
 
     async function obtenerSubsYT() {
         try {
@@ -130,54 +124,39 @@
         }
     }
 
-  <script>
-  <script>
+    // Actualiza YouTube cada 20 segundos
+    obtenerSubsYT();
+    setInterval(obtenerSubsYT, 20000);
+
+    // ===== Alternancia entre panel y logo =====
     const panel = document.getElementById("panel-contadores");
     const logo = document.getElementById("logo-vapeo");
-
-    // Duraciones en ms
-    const DURACION_CONTADOR = 10000; // 30 segundos
-    const DURACION_LOGO = 10000;     // 10 segundos
-
-    let mostrandoContador = true; // estado inicial
+    const DURACION_CONTADOR = 30000; // 30 segundos mostrando panel
+    const DURACION_LOGO = 10000;     // 10 segundos mostrando logo
+    let mostrandoContador = true;
 
     function alternarPantallas() {
         if (mostrandoContador) {
-            // Mostrar logo y ocultar contador
+            // mostrar logo
             panel.style.display = "none";
             logo.style.display = "flex";
-
             mostrandoContador = false;
             setTimeout(alternarPantallas, DURACION_LOGO);
         } else {
-            // Mostrar contador y ocultar logo
+            // mostrar panel
             panel.style.display = "flex";
             logo.style.display = "none";
-
             mostrandoContador = true;
             setTimeout(alternarPantallas, DURACION_CONTADOR);
         }
     }
 
-    // Inicia el ciclo
-    alternarPantallas();
-</script>
-
-
-
-  
+    // Inicia la alternancia después de 30s de mostrar inicialmente el panel
+    setTimeout(alternarPantallas, DURACION_CONTADOR);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
